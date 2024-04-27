@@ -103,6 +103,8 @@ $rows = $select->fetchAll(PDO::FETCH_ASSOC);
                     <!-- <img src="<?php echo $row['foto'];?>" width="100px"> -->
                     <img src="<?php echo $row['foto'] ? $row['foto'] : 'imagenPorDefecto.jpg'; ?>" width="100px">
 
+                    <!-- OJOO ARREGLAR LO DE LA IMAGEN PORQUE SOLO PONE LA DE POR DEFECTO -->
+
                 </td>
             </tr>
         <?php endforeach;?>

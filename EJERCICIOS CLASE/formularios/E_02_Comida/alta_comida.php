@@ -15,6 +15,7 @@ $alergias_posibles = [
 ];
 
 
+
 if(isset($_POST["enviar"])){
     $nombre=$_POST["nombre"];
     $direccion=$_POST["direccion"];

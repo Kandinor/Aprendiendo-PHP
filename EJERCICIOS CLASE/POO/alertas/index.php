@@ -3,6 +3,7 @@
 require 'autoload.php';
 
 $tipos = ['AlertaWarning', 'AlertaError', 'AlertaAlarma'];
+
 define("CANTIDAD", 10);
 
 for ($i = 0; $i < CANTIDAD; $i++) {

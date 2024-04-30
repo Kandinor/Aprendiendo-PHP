@@ -1,1 +1,0 @@
-<!-- contendrá la conexión a la base de datos y las funciones CRUD. -->

@@ -1,10 +1,4 @@
 <?php 
-/**
- * 0. exijo la conexion a la bbdd
- * 1. tipo de odenacion
- * 1. hago la select para mostrar y prueba con print_r
- */
-
 require_once 'conexion.php';
 
 $errores=[];

@@ -7,18 +7,6 @@
 
 require_once 'conexion.php';
 
-// Ordenación
-$orden = isset($_GET['orden']) ? $_GET['orden'] : 'PAIS';
-$dir = isset($_GET['dir']) && strtolower($_GET['dir']) === 'desc' ? 'DESC' : 'ASC';
-
-// Consulta inicial
-$select =$db->prepare("SELECT * FROM RESULTADOS");
-$select->execute();
-$resultados = $select->fetchAll(PDO::FETCH_ASSOC);
-// print_r($resultados);
-
-
-
 $errores=[];
 $pais = "";
 $resultado_tipo = "";
@@ -47,8 +35,8 @@ if(isset($_POST['enviar'])){
     //SI NO HAY ERRORES
     if(empty($errores)){
         try{
-            // Preparar la sentencia SQL para insertar datos
-            $insert = $db->prepare("INSERT INTO RUGBY(PAIS, RESULTADO_TIPO, RESULTADO_VALOR) VALUES (:PAIS, :RESULTADO_TIPO, :RESULTADO_VALOR)");
+            // Preparar la sentencia SQL para insertar datos OJO CON LOS NOMBRES DE LAS TABLAS
+            $insert = $db->prepare("INSERT INTO RESULTADOS(PAIS, RESULTADO_TIPO, RESULTADO_VALOR) VALUES (:PAIS, :RESULTADO_TIPO, :RESULTADO_VALOR)");
 
             //Vincular parámetros
             $insert->bindParam(':PAIS', $pais);

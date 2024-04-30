@@ -6,6 +6,7 @@
 
     try {
         $db = new PDO(DB_DATA, USERNAME, PASSWORD);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);//CUANDO HAY ERRORES SALTA EXCEPCION
     }catch(PDOException $e){
         echo "ERROR EN LA BASE DE DATOS:" . $e->getMessage();
         die();

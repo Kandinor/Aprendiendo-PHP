@@ -1,0 +1,1 @@
+-- Contiene las tablas necesarias, para luego lanzar el script en la terminal

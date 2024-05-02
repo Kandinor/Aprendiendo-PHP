@@ -22,14 +22,13 @@ INSERT INTO USUARIOS (NOMBRE, CORREO, CONTRASENA) VALUES ('Dani', 'Dani.dn@examp
 CREATE TABLE PUBLICACIONES(
     ID INT AUTO_INCREMENT PRIMARY KEY,
     USUARIO_ID INT,
-    TITULO VARCHAR(100),
-    TEXTO VARCHAR(250),
+    PUBLICACION VARCHAR(250),
     FECHA DATE,
     FOREIGN KEY (USUARIO_ID) REFERENCES USUARIOS(ID)
 );
 
-INSERT INTO PUBLICACIONES (USUARIO_ID, TITULO, TEXTO, FECHA) VALUES (1, 'Mi primera publicación', 'Este es el texto de mi primera publicación en mini Twitter.', CURDATE());
-INSERT INTO PUBLICACIONES (USUARIO_ID, TITULO, TEXTO, FECHA) VALUES (2, 'Hola mundo', 'Acabo de unirme a mini Twitter y estoy explorando.', CURDATE());
-INSERT INTO PUBLICACIONES (USUARIO_ID, TITULO, TEXTO, FECHA) VALUES (3, 'Buenas noches', 'Espero que todos hayan tenido un gran día!', CURDATE());
-INSERT INTO PUBLICACIONES (USUARIO_ID, TITULO, TEXTO, FECHA) VALUES (4, 'Me la pela', 'php es un cancer', CURDATE());
+INSERT INTO PUBLICACIONES (USUARIO_ID, PUBLICACION, FECHA) VALUES (1, 'Este es el texto de mi primera publicación en mini Twitter.', CURDATE());
+INSERT INTO PUBLICACIONES (USUARIO_ID, PUBLICACION, FECHA) VALUES (2, 'Acabo de unirme a mini Twitter y estoy explorando.', CURDATE());
+INSERT INTO PUBLICACIONES (USUARIO_ID, PUBLICACION, FECHA) VALUES (3,  'Espero que todos hayan tenido un gran día!', CURDATE());
+INSERT INTO PUBLICACIONES (USUARIO_ID, PUBLICACION, FECHA) VALUES (4,  'php es un cancer', CURDATE());
 

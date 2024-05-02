@@ -38,7 +38,10 @@ if(isset($_POST["enviar"])){
     }
 
     if(empty($errores)){
-        
+        $insert = $db -> prepare("INSERT INTO USUARIOS(NOMBRE, CORREO, CONTRASENA) VALUES(:)");
+
+        header("Location: feed-privada.php");
+        exit;
     }
 
 }

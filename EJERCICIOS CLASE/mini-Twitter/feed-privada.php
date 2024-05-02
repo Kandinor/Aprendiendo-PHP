@@ -1,5 +1,8 @@
 <!-- Donde los usuarios pueden ver las publicaciones. -->
 <?php 
+
+// TODO: no debería dejar que pueda borrar las publicaciones de otros
+
 //me conecto a la base de datos
 require_once 'Conexion.php';
 session_start();
@@ -68,16 +71,19 @@ function mostrarPublicaciones(){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>feed</title>
+    <link rel="stylesheet" href="estilos/feed.css">
 </head>
 <body>
-    <h1>feed-privada</h1>
-    <a href="perfil.php">perfil</a><br><br>
+    <header>
+    <h1>Feed-privada</h1>
+    <a href="perfil.php">perfil</a>
+    </header><br><br>
 
     <form action="" method="post">
         <label for="publicacion">Publicacion</label>
-        <input type="text" name="publicacion" id="publicacion" placeholder="Escribe tu publicacion">
+        <input type="text" name="publicacion" id="publicacion" placeholder="Escribe tu publicacion"><br><br>
 
-        <input type="submit" name=enviar value="Publicar">
+        <input type="submit" name=enviar id="enviar" value="Publicar">
     </form>
 
     <div id="publicaciones" name="publicaciones">

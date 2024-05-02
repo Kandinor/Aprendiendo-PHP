@@ -32,7 +32,7 @@ if(isset($_POST["enviar"])){
 
     //si no hay errores
     if(empty($errores)){
-        $consulta = $db -> prepare("SELECT * FROM USUARIOS WHERE NOMBRE = :nombre AND CONTRASENA = :contrasena");
+        $consulta = $db -> prepare("SELECT * FROM USUARIOS WHERE NOMBRE = :nombre AND CONTRASENA =:contrasena");
         //TODO HACER LA CONTRASEÑA HASH
 
         $consulta -> bindParam(":nombre", $nombre);

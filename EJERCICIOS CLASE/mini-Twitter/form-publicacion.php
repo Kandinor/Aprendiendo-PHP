@@ -1,1 +1,0 @@
-<!-- Para que los usuarios escriban y envíen sus textos. -->

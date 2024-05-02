@@ -3,10 +3,17 @@
 //conexion base de datos
 require_once 'Conexion.php';
 
+session_start();
+
 //variables
 $nombre = "";
 $contrasena = "";
 $errores=[];
+
+//mostrarle error si se quiere meter directamente en el area privada
+if(isset($_GET["error"])){
+    $error= "Debes loguearte para ver tu perfil";
+}
 
 //validacion
 if(isset($_POST["enviar"])){
@@ -104,6 +111,8 @@ if(isset($_POST["enviar"])){
 </head>
 
 <body>
+    
+    
     <h1>Bienvenid@</h1>
     <form action="" method="POST">
         <label for="nombre">Nombre:</label>
@@ -119,6 +128,10 @@ if(isset($_POST["enviar"])){
         <?php endif; ?><br><br>
 
         <button type="submit" name="enviar">Entrar</button>
+        <a href="">olvidé mi contraseña</a>
     </form>
+    <!-- sustituyo esto por el ternario que es más estricto y me ahorro el isset -->
+    <p class="error"><?=$error??""?></p>
+    <!-- <p><= isset($error)?$error:""?></p> -->
 </body>
 </html>

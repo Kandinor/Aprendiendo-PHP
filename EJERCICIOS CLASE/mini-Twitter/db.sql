@@ -16,6 +16,7 @@ CREATE TABLE USUARIOS(
 INSERT INTO USUARIOS (NOMBRE, CORREO, CONTRASENA) VALUES ('Juan Pérez', 'juan.perez@example.com', 'contrasena123');
 INSERT INTO USUARIOS (NOMBRE, CORREO, CONTRASENA) VALUES ('Ana López', 'ana.lopez@example.com', 'ana123456');
 INSERT INTO USUARIOS (NOMBRE, CORREO, CONTRASENA) VALUES ('Luis Martínez', 'luis.mtz@example.com', 'luis7890');
+INSERT INTO USUARIOS (NOMBRE, CORREO, CONTRASENA) VALUES ('Dani', 'Dani.dn@example.com', '1234');
 
 
 CREATE TABLE PUBLICACIONES(
@@ -30,4 +31,5 @@ CREATE TABLE PUBLICACIONES(
 INSERT INTO PUBLICACIONES (USUARIO_ID, TITULO, TEXTO, FECHA) VALUES (1, 'Mi primera publicación', 'Este es el texto de mi primera publicación en mini Twitter.', CURDATE());
 INSERT INTO PUBLICACIONES (USUARIO_ID, TITULO, TEXTO, FECHA) VALUES (2, 'Hola mundo', 'Acabo de unirme a mini Twitter y estoy explorando.', CURDATE());
 INSERT INTO PUBLICACIONES (USUARIO_ID, TITULO, TEXTO, FECHA) VALUES (3, 'Buenas noches', 'Espero que todos hayan tenido un gran día!', CURDATE());
+INSERT INTO PUBLICACIONES (USUARIO_ID, TITULO, TEXTO, FECHA) VALUES (4, 'Me la pela', 'php es un cancer', CURDATE());
 

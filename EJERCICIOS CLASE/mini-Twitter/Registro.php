@@ -38,10 +38,29 @@ if(isset($_POST["enviar"])){
     }
 
     if(empty($errores)){
-        $insert = $db -> prepare("INSERT INTO USUARIOS(NOMBRE, CORREO, CONTRASENA) VALUES(:)");
+        try{
+            //1. preparar la sentencia INSERT
+            $insert = $db -> prepare("INSERT INTO USUARIOS(NOMBRE, CORREO, CONTRASENA) VALUES(:nombre, :correo, :contrasena)");
 
-        header("Location: feed-privada.php");
-        exit;
+            //2. Vincular parámetros
+            $insert -> bindParam(":nombre", $nombre);
+            $insert -> bindParam(":correo", $correo);
+            $insert -> bindParam(":contrasena", $contrasena);
+            // $contrasena = password_hash($contrasena, PASSWORD_DEFAULT);
+
+            //3. Ejecutar la sentencia
+            $insert -> execute();
+            //4. Obtener el ID del usuario insertado
+            $id = $db -> lastInsertId();
+
+            header("Location: feed-privada.php");
+            exit;
+
+        }catch(PDOException $e){
+            echo "Error al insertar el usuario: " . $e->getMessage();
+        }
+        
+
     }
 
 }
@@ -55,7 +74,7 @@ if(isset($_POST["enviar"])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio de Sesión</title>
+    <title>Registrarme</title>
     <style>
         body {
             font-family: 'Arial', sans-serif; 
@@ -89,7 +108,7 @@ if(isset($_POST["enviar"])){
             border: 1px solid #ddd; 
             border-radius: 4px; 
         }
-        button {
+        .button {
             width: 100%;
             padding: 10px;
             border: none;
@@ -98,7 +117,7 @@ if(isset($_POST["enviar"])){
             border-radius: 4px;
             cursor: pointer;
         }
-        button:hover {
+        .button:hover {
             background-color: #0056b3; 
         }
 
@@ -113,17 +132,32 @@ if(isset($_POST["enviar"])){
     <form action="" method="POST">
         <div>
             <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required maxlength="100">
+            <input type="text" id="nombre" name="nombre" value="<?=$nombre?>">
+            <?php
+                if(isset($errores["nombre"])){
+                    echo "<span class='error'>{$errores['nombre']}</span>";
+                }
+            ?>
         </div>
         <div>
             <label for="correo">Correo Electrónico:</label>
-            <input type="email" id="correo" name="correo" required maxlength="100">
+            <input type="email" id="correo" name="correo" value="<?=$correo?>">
+            <?php
+                if(isset($errores["correo"])){
+                    echo "<span class='error'>{$errores['correo']}</span>";
+                }
+            ?>
         </div>
         <div>
             <label for="contrasena">Contraseña:</label>
-            <input type="password" id="contrasena" name="contrasena" required maxlength="255">
+            <input type="password" id="contrasena" name="contrasena" value="<?=$contrasena?>">
+            <?php
+                if(isset($errores["contrasena"])){
+                    echo "<span class='error'>{$errores['contrasena']}</span>";
+                }
+            ?>
         </div>
-        <button type="submit">Registrar</button>
+        <input type="submit" name="enviar" value="Registrarme" class="button">
     </form>
 </body>
 </html>

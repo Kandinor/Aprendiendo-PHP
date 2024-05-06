@@ -75,8 +75,8 @@ function mostrarPublicaciones(){
 </head>
 <body>
     <header>
-    <h1>Feed-privada</h1>
-    <a href="perfil.php">perfil</a>
+        <h1>Feed-privada</h1>
+        <a href="perfil.php" class="perfil" >perfil</a>
     </header><br><br>
 
     <form action="" method="post">

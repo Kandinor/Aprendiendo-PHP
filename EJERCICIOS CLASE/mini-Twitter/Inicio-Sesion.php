@@ -60,8 +60,8 @@ if(isset($_POST["enviar"])){
     <title>Inicio de Sesión</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif; /* Fuente sencilla y limpia */
-            background-color: #f4f4f4; /* Color de fondo suave */
+            font-family: 'Arial', sans-serif; 
+            background-color: #f4f4f4;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -71,8 +71,8 @@ if(isset($_POST["enviar"])){
         form {
             background: white;
             padding: 25px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra suave */
-            border-radius: 8px; /* Bordes redondeados */
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+            border-radius: 8px;
             width: 300px;
         }
         div {
@@ -81,27 +81,27 @@ if(isset($_POST["enviar"])){
         label {
             display: block;
             margin-bottom: 5px;
-            color: #333; /* Color oscuro para texto */
+            color: #333;
         }
         input[type="text"],
         input[type="email"],
         input[type="password"] {
             width: 100%;
             padding: 8px;
-            border: 1px solid #ddd; /* Bordes sutiles */
-            border-radius: 4px; /* Bordes ligeramente redondeados */
+            border: 1px solid #ddd;
+            border-radius: 4px; 
         }
         button {
             width: 100%;
             padding: 10px;
             border: none;
-            background-color: #007BFF; /* Color de fondo para el botón */
+            background-color: #007BFF; 
             color: white;
             border-radius: 4px;
             cursor: pointer;
         }
         button:hover {
-            background-color: #0056b3; /* Cambio de color al pasar el mouse */
+            background-color: #0056b3; 
         }
 
         .error{

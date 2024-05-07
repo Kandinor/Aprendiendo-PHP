@@ -9,6 +9,6 @@ abstract class GestorDatos{
         $this -> descripcion;
     }
 
-    abstract public function obtenerDetalles();
+    abstract public function obtenerDetalle();
     
 }

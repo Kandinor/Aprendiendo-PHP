@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// Define la ruta del archivo CSV
+// variables
 $archivoPath = 'empleados.csv';  
 $nombre = '';
 $departamento = '';
@@ -68,7 +68,7 @@ $datos = leerCsv($archivoPath);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empleados</title>
+    <title>Empleados_CSV</title>
     <style>
         h1 {
             text-align: center;

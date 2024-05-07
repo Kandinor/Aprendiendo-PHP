@@ -44,8 +44,11 @@ if(isset($_POST["guardar"])){
     }
 
     if(empty($errores)){
+        // Cargar datos
         $datos = leerJson($archivoPath);
-        $datos[] = ["nombre" => $nombre, "departamento" => $departamento, "mote" => $mote];
+
+        // Guardar nuevo empleado al array
+        $datos[] = ["nombre" => $nombre, "departamento" => $departamento, "mote" => $mote];    
         escribirJson($archivoPath, $datos);
 
         header('Location: index.php');
@@ -55,6 +58,7 @@ if(isset($_POST["guardar"])){
 
 // Cargar datos para mostrar
 $datos = leerJson($archivoPath);
+
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +66,7 @@ $datos = leerJson($archivoPath);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empleados</title>
+    <title>Empleados_Json</title>
     <style>
         h1 { text-align: center; }
         form { width: 400px; margin: 0 auto; }

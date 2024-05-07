@@ -105,7 +105,7 @@ $inicio = ($paginaActual - 1) * $filasPorPagina;
     </style>
 </head>
 <body>
-    <h1>Agrega los empleados</h1>
+    <h1>Agrega los empleados en CSV</h1>
     <form action="" method="post">
         Nombre: <input type="text" name="nombre" value="<?=$nombre?>">
         <?php if(isset($errores['nombre'])): ?>

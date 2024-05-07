@@ -2,31 +2,25 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// Define la ruta del archivo CSV
-$archivoPath = 'empleados.csv';  
+// variables
+$archivoPath = 'empleados.json';  
 $nombre = '';
 $departamento = '';
 $mote = '';
 $errores = [];
 
-
-function leerCsv($archivoPath) {
-    $datos = [];
-    if (($handle = fopen($archivoPath, "r")) !== FALSE) {
-        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-            $datos[] = $data;
-        }
-        fclose($handle);
+// Funciones
+function leerJson($archivoPath) {
+    if (file_exists($archivoPath)) {
+        $contenidoJson = file_get_contents($archivoPath);
+        return json_decode($contenidoJson, true);
     }
-    return $datos;
+    return [];
 }
 
-function escribirCsv($archivoPath, $datos) {
-    $handle = fopen($archivoPath, 'w');
-    foreach ($datos as $linea) {
-        fputcsv($handle, $linea);
-    }
-    fclose($handle);
+function escribirJson($archivoPath, $datos) {
+    $json = json_encode($datos, JSON_PRETTY_PRINT);
+    file_put_contents($archivoPath, $json);
 }
 
 // Validar y guardar datos
@@ -50,17 +44,17 @@ if(isset($_POST["guardar"])){
     }
 
     if(empty($errores)){
-        $datos = leerCsv($archivoPath);
-        $datos[] = [$nombre, $departamento, $mote];
-        escribirCsv($archivoPath, $datos);
+        $datos = leerJson($archivoPath);
+        $datos[] = ["nombre" => $nombre, "departamento" => $departamento, "mote" => $mote];
+        escribirJson($archivoPath, $datos);
 
-        header('Location:index.php');
+        header('Location: index.php');
         exit;
     }
 }
 
 // Cargar datos para mostrar
-$datos = leerCsv($archivoPath);
+$datos = leerJson($archivoPath);
 ?>
 
 <!DOCTYPE html>
@@ -70,33 +64,16 @@ $datos = leerCsv($archivoPath);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Empleados</title>
     <style>
-        h1 {
-            text-align: center;
-        }
-        form {
-            width: 400px;
-            margin: 0 auto;
-        }
-        input {
-            width: 100%;
-        }
-        span {
-            color: red;
-        }
-        table {
-            width: 50%;
-            margin: 20px auto;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
+        h1 { text-align: center; }
+        form { width: 400px; margin: 0 auto; }
+        input, textarea { width: 100%; }
+        span { color: red; }
+        table { width: 50%; margin: 20px auto; border-collapse: collapse; }
+        th, td { border: 1px solid black; padding: 8px; text-align: left; }
     </style>
 </head>
 <body>
-    <h1>Agrega los empleados en CSV</h1>
+    <h1>Agrega los empleados en Json</h1>
     <form action="" method="post">
         Nombre: <input type="text" name="nombre" value="<?=$nombre?>">
         <?php if(isset($errores['nombre'])): ?>
@@ -130,9 +107,9 @@ $datos = leerCsv($archivoPath);
         <tbody>
             <?php foreach ($datos as $fila): ?>
             <tr>
-                <td><?= htmlspecialchars($fila[0]) ?></td>
-                <td><?= htmlspecialchars($fila[1]) ?></td>
-                <td><?= htmlspecialchars($fila[2]) ?></td>
+                <td><?= htmlspecialchars($fila['nombre']) ?></td>
+                <td><?= htmlspecialchars($fila['departamento']) ?></td>
+                <td><?= htmlspecialchars($fila['mote']) ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>

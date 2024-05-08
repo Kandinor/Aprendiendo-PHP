@@ -23,10 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['cadena'])) {
         $resultados['vocales'] = contarVocales($cadena);
         $resultados['consonantes'] = contarConsonantes($cadena);
         $resultados['palindromo'] = esPalindromo($cadena);
+
     } else {
         $errores[] = "*Debe ingresar una cadena.";
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="es">

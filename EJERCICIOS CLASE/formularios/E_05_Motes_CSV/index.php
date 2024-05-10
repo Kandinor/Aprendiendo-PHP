@@ -54,7 +54,7 @@ if(isset($_POST["guardar"])){
         $datos[] = [$nombre, $departamento, $mote];
         escribirCsv($archivoPath, $datos);
 
-        header('Location:index.php');
+        header('Location:index.php', true, 302);
         exit;
     }
 }

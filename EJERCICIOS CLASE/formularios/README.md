@@ -42,6 +42,21 @@ En la misma página
     display the form
 ```
 
+```
+si el usuario envió el formulario
+    si hay errores en el formulario
+        llenar el arreglo de errores
+    sino
+        registrar los datos en la base de datos
+        redireccionamiento 302, como lo requiere el estándar HTTP
+        salir
+si tenemos algunos errores
+    mostrar errores
+    llenar los valores de los campos del formulario
+mostrar el formulario
+
+```
+
 
 ## En qué página procesar la información
 

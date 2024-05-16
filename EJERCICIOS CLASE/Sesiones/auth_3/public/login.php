@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $login = $auth->login($email, $password);
 
     if ($login) {
-        header('Location: index.php');
+        header('Location: private.php');
         exit();
     } else {
         echo "<p>Inicio de sesión fallido. Inténtalo nuevamente.</p>";

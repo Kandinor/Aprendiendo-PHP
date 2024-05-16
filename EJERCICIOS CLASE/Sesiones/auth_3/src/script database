@@ -1,0 +1,21 @@
+CREATE DATABASE auth_db;
+USE auth_db;
+
+CREATE TABLE users (
+    id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    token VARCHAR(255) NOT NULL,
+    active TINYINT(1) NOT NULL DEFAULT 0
+);
+
+-- Usuario 1: andino.andino@ejemplo.com
+INSERT INTO users (email, password, token, active) VALUES 
+('andino.andino@ejemplo.com', '$2y$10$7QEXpDZyL4V1TA9BLWsmSewUofcvd4uhJty9z1J5wH.9y.8ghG9ai', 'f1d3ff8443297732862df21dc4e57262', 0);
+
+-- Usuario 2: maria.perez@ejemplo.com
+INSERT INTO users (email, password, token, active) VALUES 
+('maria.perez@ejemplo.com', '$2y$10$yQ.Z8S5QO6lQGQ8JYwZdHe4lgB.EYP/s8H7kNCyp3k6ofB8HZrxmi', '7d793037a0760186574b0282f2f435e7', 0);
+
+
+andino.andino@ejemplo.com - password123

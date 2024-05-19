@@ -1,6 +1,7 @@
 <?php
 /**Esta subclase tendrá atributos como sistemas operativos soportados, version, y soporteTransacciones. */
-
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 // src/GestorRelacional.php
 require_once 'GestorDatos.php';
 require_once 'HTMLRenderer.php';

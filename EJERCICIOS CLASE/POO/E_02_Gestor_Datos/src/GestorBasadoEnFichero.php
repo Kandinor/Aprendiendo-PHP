@@ -1,6 +1,7 @@
 <?php 
 /**Tendrá atributos como formatoArchivo (por ejemplo, TXT, CSV, XML) y modoAcceso (lectura, escritura, ambos). */
-
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 // src/GestorBasadoEnFichero.php
 require_once 'GestorDatos.php';
 require_once 'HTMLRenderer.php';

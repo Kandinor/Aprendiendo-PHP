@@ -1,6 +1,7 @@
 <!-- Formulario para que nuevos usuarios se registren. -->
 <?php
-
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 //conexion base de datos
 require_once 'Conexion.php';
 

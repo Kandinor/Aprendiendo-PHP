@@ -1,5 +1,7 @@
 <!-- Para que los usuarios accedan a su cuenta. -->
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 //conexion base de datos
 require_once 'Conexion.php';
 

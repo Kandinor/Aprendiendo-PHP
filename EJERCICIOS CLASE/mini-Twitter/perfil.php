@@ -1,5 +1,7 @@
 <!-- Donde los usuarios pueden editar su nombre de usuario. -->
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 //me conecto a la base de datos
 require_once 'Conexion.php';
 

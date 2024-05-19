@@ -1,6 +1,7 @@
 <?php
 /**Incluirá atributos como tipoModeloDatos (por ejemplo, document, key-value, graph, etc.). */
-
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 // src/GestorNoRelacional.php
 require_once 'GestorDatos.php';
 require_once 'HTMLRenderer.php';

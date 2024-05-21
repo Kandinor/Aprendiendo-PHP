@@ -9,7 +9,17 @@ $contenido ='';
 $fecha= '';
 $errores=[];
 
+
+function generarSlug($cadena) {
+    $cadena = strtolower(trim($cadena));
+    $cadena = preg_replace('/[^a-z0-9-]/', '-', $cadena);
+    $cadena = preg_replace('/-+/', '-', $cadena);
+    return rtrim($cadena, '-');
+}
+
 if(isset($_POST['enviar'])){
+
+    $slug = generarSlug($titulo);
     
     if (isset($_POST['titulo']) && trim($_POST['titulo']) !== '') {
         $titulo = trim($_POST['titulo']);
@@ -33,16 +43,21 @@ if(isset($_POST['enviar'])){
     if (empty($errores)) {
 
         // Preparar la sentencia SQL para insertar datos
-        $insert = $db->prepare('INSERT INTO ARTICULOS (TITULO, CONTENIDO, FECHA) VALUES (:titulo, :contenido, :fecha)');
+        $insert = $db->prepare('INSERT INTO ARTICULOS (TITULO, CONTENIDO, FECHA, slug) VALUES (:titulo, :contenido, :fecha, :slug)');
 
         // Vincular parámetros
         $insert->bindParam(':titulo', $titulo);
         $insert->bindParam(':contenido', $contenido);
         $insert->bindParam(':fecha', $fecha);
+        $insert->bindParam(':slug', $slug);
         
 
          // Ejecutar la sentencia
-        $insert->execute();
+        if ($insert->execute()) {
+            echo "Artículo creado exitosamente";
+        } else {
+            echo "Error al crear el artículo";
+        }
 
         header('Location: listado_articulos.php');
         exit;

@@ -23,10 +23,9 @@ $articulos = $select->fetchAll(PDO::FETCH_ASSOC);
     <ul>
         <?php foreach ($articulos as $articulo): ?>
             <li>
-                <a href="detalle_articulos/<?php echo htmlspecialchars($articulo['id']); ?>">
+                <a href="articulos/<?php echo htmlspecialchars($articulo['slug']); ?>">
                     <?php echo htmlspecialchars($articulo['TITULO'] ?? 'Título no disponible'); ?>
                 </a>
-                - <?php echo date('d-m-Y', strtotime($articulo['FECHA'] ?? '2000-12-12')); ?>
             </li>
             
         <?php endforeach; ?>

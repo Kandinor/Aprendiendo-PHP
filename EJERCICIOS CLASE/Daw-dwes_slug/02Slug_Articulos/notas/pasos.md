@@ -9,7 +9,7 @@ Crea una base de datos en MySQL para almacenar los artículos. Puedes hacerlo a 
 ## 2.1. Activar mod_rewrite en Apache
 
 ## 2.2. Crear un archivo .htaccess
-Crea un archivo .htaccess en la raíz del el proyecto para habilitar la reescritura de URLs.
+Crea un archivo .htaccess en la raíz de tu proyecto para habilitar la reescritura de URLs.
 
 ```
 RewriteEngine On

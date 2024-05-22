@@ -8,6 +8,7 @@ $titulo ='';
 $contenido ='';
 $fecha= '';
 $errores=[];
+$slug = "";
 
 
 function generarSlug($cadena) {
@@ -19,13 +20,14 @@ function generarSlug($cadena) {
 
 if(isset($_POST['enviar'])){
 
-    $slug = generarSlug($titulo);
-    
     if (isset($_POST['titulo']) && trim($_POST['titulo']) !== '') {
         $titulo = trim($_POST['titulo']);
+        $slug = generarSlug($titulo);
     } else {
         $errores['titulo'] = "El título es obligatorio";
     }
+
+    
 
     if (isset($_POST['contenido'])) {
         $contenido = $_POST['contenido'];
@@ -52,7 +54,7 @@ if(isset($_POST['enviar'])){
         $insert->bindParam(':slug', $slug);
         
 
-         // Ejecutar la sentencia
+        // Ejecutar la sentencia
         if ($insert->execute()) {
             echo "Artículo creado exitosamente";
         } else {
@@ -62,7 +64,11 @@ if(isset($_POST['enviar'])){
         header('Location: listado_articulos.php');
         exit;
     }
+
+    
 }
+
+
 
 ?>
 

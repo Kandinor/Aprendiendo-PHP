@@ -29,3 +29,12 @@ en el archivo listado.php para mostrar la lista de articulos
 
 ## 3.3. Ver un artículo
 En el archivo detalle.php para mostrar un articolo especifico.
+
+## ejemplo de tipo en bindparam 
+$insertarDatos = $baseDatos->prepare("INSERT INTO usuario (nombre_usuario, correo, clave) VALUES (:nombreUsuario, :correo, :clave)");
+    $insertarDatos->bindParam(':nombreUsuario', $nombre, PDO::PARAM_STR);
+    $insertarDatos->bindParam(':correo', $correo, PDO::PARAM_STR);
+    $insertarDatos->bindParam(':clave', $clave, PDO::PARAM_STR);
+    if ($insertarDatos->execute()) 
+
+    https://www.php.net/manual/es/pdostatement.bindparam.php

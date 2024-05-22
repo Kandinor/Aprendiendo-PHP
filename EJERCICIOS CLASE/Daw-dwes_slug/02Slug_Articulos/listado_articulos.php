@@ -29,8 +29,6 @@ $articulos = $select->fetchAll(PDO::FETCH_ASSOC);
             </li>
             
         <?php endforeach; ?>
-
-        
     </ul>
 </body>
 </html>

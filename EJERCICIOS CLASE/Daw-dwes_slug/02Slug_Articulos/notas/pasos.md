@@ -7,6 +7,10 @@ Crea una base de datos en MySQL para almacenar los artículos. Puedes hacerlo a 
 # Paso 2: Configuración de URLs amigables
 
 ## 2.1. Activar mod_rewrite en Apache
+    Asegurarse de que el módulo de reescritura esté habilitado:
+
+        sudo a2enmod rewrite
+        sudo systemctl restart apache2
 
 ## 2.2. Crear un archivo .htaccess
 Crea un archivo .htaccess en la raíz de tu proyecto para habilitar la reescritura de URLs.

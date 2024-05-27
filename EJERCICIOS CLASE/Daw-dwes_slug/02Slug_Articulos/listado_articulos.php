@@ -23,7 +23,7 @@ $articulos = $select->fetchAll(PDO::FETCH_ASSOC);
     <ul>
         <?php foreach ($articulos as $articulo): ?>
             <li>
-                <a href="articulos/<?php echo htmlspecialchars($articulo['slug']); ?>">
+                <a href="detalle_articulos.php?slug=<?php echo htmlspecialchars($articulo['slug']); ?>">
                     <?php echo htmlspecialchars($articulo['TITULO'] ?? 'Título no disponible'); ?>
                 </a>
             </li>

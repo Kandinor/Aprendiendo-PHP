@@ -23,6 +23,16 @@ if(isset($_POST['enviar'])){
     if (isset($_POST['titulo']) && trim($_POST['titulo']) !== '') {
         $titulo = trim($_POST['titulo']);
         $slug = generarSlug($titulo);
+        
+        // Verificar si el slug ya existe
+        $slugQuery = $db->prepare('SELECT COUNT(*) FROM ARTICULOS WHERE slug = :slug');
+        $slugQuery->bindParam(':slug', $slug);
+        $slugQuery->execute();
+        $slugCount = $slugQuery->fetchColumn();
+        
+        if ($slugCount > 0) {
+            $errores['slug'] = "El slug generado ya existe. Cambie el título para generar un slug único.";
+        }
     } else {
         $errores['titulo'] = "El título es obligatorio";
     }
@@ -93,6 +103,9 @@ if(isset($_POST['enviar'])){
         <input type="text" name="titulo" id="titulo" value="<?php echo htmlspecialchars($titulo); ?>">
         <?php if (isset($errores['titulo'])): ?>
             <div class="error"><?php echo htmlspecialchars($errores['titulo']); ?></div>
+        <?php endif; ?>
+        <?php if (isset($errores['slug'])): ?>
+            <div class="error"><?php echo htmlspecialchars($errores['slug']); ?></div>
         <?php endif; ?>
 
         <label for="contenido">Contenido</label>

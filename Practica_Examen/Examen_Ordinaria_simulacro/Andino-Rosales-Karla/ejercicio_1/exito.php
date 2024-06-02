@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Pedido Exitoso</h1>
-    <p>Su pedido ha sido registrado y el stock ha sido actualizado y esperemos aprobar.</p>
+    <p>Su pedido ha sido registrado y el stock ha sido actualizado, esperemos aprobar este examen!!!!.</p>
     <a href="form.php">Hacer otro pedido</a>
 </body>
 </html>

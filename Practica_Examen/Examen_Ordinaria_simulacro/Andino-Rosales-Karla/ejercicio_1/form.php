@@ -9,6 +9,7 @@ $fecha = "";
 $flor = "";
 $cantidad = "";
 $errores = [];
+$direccion = "";
 
 // Obtener flores para el select porque me da error en el forea
 try {
@@ -43,33 +44,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errores["cantidad"] = "*Debe tener cantidad válida";
     }
 
+    if (isset($_POST["direccion"]) && $_POST["direccion"] != "") {
+        $direccion = $_POST["direccion"];
+    } else {
+        $errores["direccion"] = "*Pon la direccion a la cual enviarte el pedido";
+    }
+
     if (empty($errores)) {
-        // Validar stock
-        try {
-            $select = $db->prepare("SELECT stock FROM flores WHERE id = ?");
-            $select->execute([$flor]);
-            $stock = $select->fetchColumn();
-            if ($cantidad > $stock) {
-                $errores["stock"] = "*No hay suficiente stock";
-            }
-        } catch (PDOException $e) {
-            die("Error al validar stock: " . $e->getMessage());
+        $select = $db->prepare("SELECT stock FROM flores WHERE id = :id");
+        $select->bindParam(':id', $flor, PDO::PARAM_INT);
+        $select->execute();
+        $stock = $select->fetchColumn();
+
+        if ($cantidad > $stock) {
+            $errores["stock"] = "No hay suficiente stock.";
         }
 
         if (empty($errores)) {
             try {
                 // Registrar pedido
-                $insert = $db->prepare("INSERT INTO pedidos (nombre_cliente, fecha, flor_id, cantidad) VALUES (?, ?, ?, ?)");
-                $insert->execute([$nombre, $fecha, $flor, $cantidad]);
+                if (empty($errores)) {
+                    $insert = $db->prepare("INSERT INTO pedidos (flor_id, direccion, fecha, unidades) VALUES (:flor_id, :direccion, :fecha, :unidades)");
+                    $insert->bindParam(':flor_id', $flor, PDO::PARAM_INT);
+                    $insert->bindParam(':direccion', $direccion, PDO::PARAM_STR);
+                    $insert->bindParam(':fecha', $fecha, PDO::PARAM_STR);
+                    $insert->bindParam(':unidades', $cantidad, PDO::PARAM_INT);
+                    $insert->execute();
+                
 
-                // Actualizar stock
-                $nuevo_stock = $stock - $cantidad;
-                $update = $db->prepare("UPDATE flores SET stock = ? WHERE id = ?");
-                $update->execute([$nuevo_stock, $flor]);
+                    // Actualizar stock
+                    $nuevo_stock = $stock - $cantidad;
+                    $update = $db->prepare("UPDATE flores SET stock = ? WHERE id = ?");
+                    $update->execute([$nuevo_stock, $flor]);
 
-                // Redirigir a éxito
-                header("Location: exito.php");
-                die();
+                    // Redirigir a éxito
+                    header("Location: exito.php");
+                    die();
+                }
             } catch (PDOException $e) {
                 die("Error al registrar pedido: " . $e->getMessage());
             }
@@ -129,7 +140,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($errores["stock"])) {
                 echo "<span class='error'>{$errores['stock']}</span>";
             }
-        ?><br><br>
+        ?>
+        <label for="direccion">Direccion:</label>
+        <input type="text" name="direccion" id="" value="<?=$direccion?>">
+        <?php 
+            if(isset($errores["direccion"])){
+                echo "<span class='error'>{$errores["direccion"]}</span>";
+            }
+        ?>
+        <br><br>
 
         <input type="submit" name="enviar" value="Enviar">
     </form>

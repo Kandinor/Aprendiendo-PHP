@@ -97,12 +97,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Formulario de Pedido</title>
     <link rel="stylesheet" href="css/estilo.css">
     <style>
-        label {
+        /* label {
             display: block;
         }
         .error {
             color: brown;
-        }
+        } */
     </style>
 </head>
 <body>
@@ -150,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ?>
         <br><br>
 
-        <input type="submit" name="enviar" value="Enviar">
+        <input type="submit" name="enviar" value="Comprar">
     </form>
 </body>
 </html>

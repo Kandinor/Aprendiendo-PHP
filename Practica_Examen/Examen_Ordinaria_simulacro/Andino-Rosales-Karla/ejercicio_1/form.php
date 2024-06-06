@@ -63,24 +63,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($errores)) {
             try {
                 // Registrar pedido
-                if (empty($errores)) {
-                    $insert = $db->prepare("INSERT INTO pedidos (flor_id, direccion, fecha, unidades) VALUES (:flor_id, :direccion, :fecha, :unidades)");
-                    $insert->bindParam(':flor_id', $flor, PDO::PARAM_INT);
-                    $insert->bindParam(':direccion', $direccion, PDO::PARAM_STR);
-                    $insert->bindParam(':fecha', $fecha, PDO::PARAM_STR);
-                    $insert->bindParam(':unidades', $cantidad, PDO::PARAM_INT);
-                    $insert->execute();
-                
+            
+                $insert = $db->prepare("INSERT INTO pedidos (flor_id, direccion, fecha, unidades) VALUES (:flor_id, :direccion, :fecha, :unidades)");
+                $insert->bindParam(':flor_id', $flor, PDO::PARAM_INT);
+                $insert->bindParam(':direccion', $direccion, PDO::PARAM_STR);
+                $insert->bindParam(':fecha', $fecha, PDO::PARAM_STR);
+                $insert->bindParam(':unidades', $cantidad, PDO::PARAM_INT);
+                $insert->execute();
+            
 
-                    // Actualizar stock
-                    $nuevo_stock = $stock - $cantidad;
-                    $update = $db->prepare("UPDATE flores SET stock = ? WHERE id = ?");
-                    $update->execute([$nuevo_stock, $flor]);
+                // Actualizar stock
+                $nuevo_stock = $stock - $cantidad;
+                $update = $db->prepare("UPDATE flores SET stock = ? WHERE id = ?");
+                $update->execute([$nuevo_stock, $flor]);
 
-                    // Redirigir a éxito
-                    header("Location: exito.php");
-                    die();
-                }
+                // Redirigir a éxito
+                header("Location: exito.php");
+                die();
             } catch (PDOException $e) {
                 die("Error al registrar pedido: " . $e->getMessage());
             }

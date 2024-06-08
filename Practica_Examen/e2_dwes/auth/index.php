@@ -5,8 +5,11 @@ error_reporting(E_ALL);
 require_once 'conexion.php';
 
 //obtener tokens
+$select = $db -> prepare("SELECT token FROM auth_tokens WHERE consumido = 0");
 
-$consulta = $db -> prepare("SELECT token FROM auth_tokens WHERE consumido = 0");
+$select->execute();
+
+$tokens = $select->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <!DOCTYPE html>
@@ -21,9 +24,9 @@ $consulta = $db -> prepare("SELECT token FROM auth_tokens WHERE consumido = 0");
         Listado de enlaces de autentificación
     </h1>
     <ul>
-        <li><a href="">login 1</a></li>
-        <li><a href="">login 2</a></li>
-        <li><a href="">...</a></li>
+        <?php foreach($tokens as $token): ?>
+            <li><a href="auth.php?token=<?= $token['token'] ?>">Login con token <?= htmlspecialchars($token['token']) ?></a></li>
+        <?php endforeach;?>
     </ul>
 </body>
 </html>

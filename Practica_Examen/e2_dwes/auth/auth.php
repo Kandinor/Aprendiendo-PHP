@@ -4,9 +4,7 @@ error_reporting(E_ALL);
 //conexion base de datos
 require_once 'conexion.php';
 
-$token = $_GET['token'] ?? '';
-
-if (!$token) {
+if (!isset($_GET['token'])) {
     die("Token no proporcionado.");
 }
 

@@ -6,9 +6,7 @@ require_once 'conexion.php';
 
 //obtener tokens
 $select = $db -> prepare("SELECT token FROM auth_tokens");
-
 $select->execute();
-
 $tokens = $select->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
@@ -25,7 +23,7 @@ $tokens = $select->fetchAll(PDO::FETCH_ASSOC);
     </h1>
     <ul>
         <?php foreach($tokens as $token): ?>
-            <li><a href="auth.php?token=<?= $token['token'] ?>">Login con token <?= htmlspecialchars($token['token']) ?></a></li>
+            <li><a href="auth.php?token=<?= $token['token'] ?>">Login con token <?= $token['token']?></a></li>
         <?php endforeach;?>
     </ul>
 </body>

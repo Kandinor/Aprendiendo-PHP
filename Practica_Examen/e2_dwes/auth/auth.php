@@ -6,7 +6,11 @@ require_once 'conexion.php';
 
 if (!isset($_GET['token'])) {
     die("Token no proporcionado.");
+}else{
+    $token = $_GET['token'];
 }
+
+
 
 // Verificar si el token es válido y no ha sido consumido
 $query = "SELECT * FROM auth_tokens WHERE token = :token AND consumido = 0";

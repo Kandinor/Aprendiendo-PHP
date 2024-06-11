@@ -20,5 +20,7 @@ $email = $_SESSION['email'];
 <body>
     <h1>Bienvenido</h1>
     <h2>Hola <?= $email?></h2>
+
+    <a href="logout.php">Cerrar sesión</a>
 </body>
 </html>
